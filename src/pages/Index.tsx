@@ -8,9 +8,9 @@ import { Egg } from 'lucide-react';
 const Index = () => {
   return (
     <MessProvider>
-      <div className="min-h-screen bg-background">
-        {/* Header */}
-        <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-20">
+      <div className="h-screen flex flex-col bg-background overflow-hidden">
+        {/* Header – always visible */}
+        <header className="shrink-0 border-b border-border bg-card/80 backdrop-blur-sm z-20">
           <div className="container max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
             <div className="bg-primary rounded-xl p-2">
               <Egg className="h-5 w-5 text-primary-foreground" />
@@ -22,30 +22,31 @@ const Index = () => {
           </div>
         </header>
 
-        {/* Main */}
-        <main className="container max-w-6xl mx-auto px-4 py-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            {/* Center: Tray + Snake arena */}
-            <div className="lg:col-span-6 flex items-start justify-center">
-              <div className="relative w-full max-w-[500px] aspect-[3/2]">
-                {/* Snake animation layer */}
+        {/* Egg Tray – always visible, never scrolls */}
+        <div className="shrink-0 bg-background z-10">
+          <div className="container max-w-6xl mx-auto px-4 py-4 flex items-start justify-center">
+            <div className="relative w-full max-w-[500px] lg:max-w-[400px]">
+              {/* Snake animation layer */}
+              <div className="absolute inset-0 overflow-hidden">
                 <SnakeCanvas />
-                {/* Tray centered on top */}
-                <div className="absolute inset-0 flex items-center justify-center z-0">
-                  <EggTray />
-                </div>
               </div>
-            </div>
-
-            {/* Right: Members + Controls */}
-            <div className="lg:col-span-6 flex flex-col gap-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <MemberPanel />
-                <TrayControls />
+              {/* Tray content flows naturally */}
+              <div className="relative z-0 flex items-center justify-center py-4">
+                <EggTray />
               </div>
             </div>
           </div>
-        </main>
+        </div>
+
+        {/* Scrollable area – Members + Controls */}
+        <div className="flex-1 overflow-y-auto min-h-0">
+          <div className="container max-w-6xl mx-auto px-4 py-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <MemberPanel />
+              <TrayControls />
+            </div>
+          </div>
+        </div>
       </div>
     </MessProvider>
   );

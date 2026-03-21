@@ -26,8 +26,8 @@ const TRAY_CX = CANVAS_W / 2;
 const TRAY_CY = CANVAS_H / 2;
 const TRAY_W = 200;
 const TRAY_H = 240;
-const SEG_SPACING = 6;
-const BASE_SEGMENTS = 8;
+const SEG_SPACING = 8;
+const BASE_SEGMENTS = 12;
 const SEGMENTS_PER_EGG = 3;
 
 const SnakeCanvas = () => {
@@ -173,7 +173,7 @@ const SnakeCanvas = () => {
       for (let i = segCount - 1; i >= 1; i--) {
         const seg = snake.segments[i];
         const t = 1 - i / segCount;
-        const radius = 2.5 + t * 4;
+        const radius = 4 + t * 5;
         
         ctx.beginPath();
         ctx.arc(seg.x, seg.y, radius, 0, Math.PI * 2);
@@ -190,7 +190,7 @@ const SnakeCanvas = () => {
 
       // Head
       ctx.beginPath();
-      ctx.arc(head.x, head.y, 7, 0, Math.PI * 2);
+      ctx.arc(head.x, head.y, 10, 0, Math.PI * 2);
       ctx.fillStyle = snake.color;
       ctx.fill();
 
@@ -203,14 +203,14 @@ const SnakeCanvas = () => {
       const perpY = eyeOffX;
 
       for (const side of [-1, 1]) {
-        const ex = head.x + eyeOffX * 2 + perpX * side * 3.5;
-        const ey = head.y + eyeOffY * 2 + perpY * side * 3.5;
+        const ex = head.x + eyeOffX * 3 + perpX * side * 5;
+        const ey = head.y + eyeOffY * 3 + perpY * side * 5;
         ctx.beginPath();
-        ctx.arc(ex, ey, 2.2, 0, Math.PI * 2);
+        ctx.arc(ex, ey, 3, 0, Math.PI * 2);
         ctx.fillStyle = '#fff';
         ctx.fill();
         ctx.beginPath();
-        ctx.arc(ex + eyeOffX * 0.8, ey + eyeOffY * 0.8, 1, 0, Math.PI * 2);
+        ctx.arc(ex + eyeOffX * 1, ey + eyeOffY * 1, 1.4, 0, Math.PI * 2);
         ctx.fillStyle = '#222';
         ctx.fill();
       }
@@ -219,9 +219,9 @@ const SnakeCanvas = () => {
       if (snake.state === 'hunting') {
         const tongueLen = 8 + Math.sin(Date.now() * 0.02) * 3;
         ctx.beginPath();
-        ctx.moveTo(head.x + eyeOffX * 7, head.y + eyeOffY * 7);
-        const tx = head.x + eyeOffX * (7 + tongueLen);
-        const ty = head.y + eyeOffY * (7 + tongueLen);
+        ctx.moveTo(head.x + eyeOffX * 10, head.y + eyeOffY * 10);
+        const tx = head.x + eyeOffX * (10 + tongueLen);
+        const ty = head.y + eyeOffY * (10 + tongueLen);
         ctx.lineTo(tx, ty);
         // Fork
         ctx.moveTo(tx, ty);

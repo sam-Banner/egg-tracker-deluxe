@@ -19,13 +19,13 @@ const EggTray = () => {
         </span>
       </div>
 
-      <div className="tray-container w-full max-w-[220px] mx-auto p-3">
+      <div className="tray-container w-[220px] mx-auto p-3">
         <div className="grid grid-cols-5 gap-1.5">
           {eggs.map((egg) => (
-            <div key={egg.index} className="tray-cell flex items-center justify-center p-1">
+            <div key={egg.index} className="tray-cell flex items-center justify-center w-[34px] h-[34px]">
               {egg.consumed ? (
                 <div
-                  className="egg-cell-consumed w-full aspect-square rounded-full flex items-center justify-center animate-scale-in"
+                  className="egg-cell-consumed w-[26px] h-[26px] rounded-full flex items-center justify-center animate-scale-in"
                   style={{
                     backgroundColor: getOwnerColor(egg.ownerId) || '#888',
                     boxShadow: `inset 0 -2px 4px rgba(0,0,0,0.2), 0 2px 4px ${getOwnerColor(egg.ownerId) || '#888'}44`,
@@ -36,7 +36,7 @@ const EggTray = () => {
                   </span>
                 </div>
               ) : (
-                <div className="egg-cell w-full cursor-default" />
+                <div className="egg-cell w-[26px] h-[26px] cursor-default" />
               )}
             </div>
           ))}
