@@ -20,12 +20,6 @@ interface Snake {
   baseLength: number;
 }
 
-const CANVAS_W = 600;
-const CANVAS_H = 400;
-const TRAY_CX = CANVAS_W / 2;
-const TRAY_CY = CANVAS_H / 2;
-const TRAY_W = 200;
-const TRAY_H = 240;
 const SEG_SPACING = 6;
 const BASE_SEGMENTS = 8;
 const SEGMENTS_PER_EGG = 3;
